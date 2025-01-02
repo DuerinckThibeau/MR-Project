@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,11 +14,18 @@ public class ChangeScene : MonoBehaviour
         if (!string.IsNullOrEmpty(sceneName))
         {
             // Load the scene with the specified name
-            SceneManager.LoadScene(sceneName);
+
+            StartCoroutine(DelaySceneChange());
         }
         else
         {
             Debug.LogWarning("Scene name is empty!");
         }
+    }
+
+    private IEnumerator DelaySceneChange()
+    {
+        yield return new WaitForSeconds(47);
+        SceneManager.LoadScene(sceneName);
     }
 }
